@@ -9,6 +9,9 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('welcome') }}">Home</a>
             </li>
+{{--            <li class="nav-item active">--}}
+{{--            <a class="nav-link" href="{{ route('posts.index') }}">Posts</a>--}}
+{{--            </li>--}}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle='dropdown' aria-haspopup="true" aria-expanded="false">
                     Users
@@ -16,6 +19,15 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('users.create') }}">New User</a>
                     <a class="dropdown-item" href="{{ route('users.index') }}">List Users</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle='dropdown' aria-haspopup="true" aria-expanded="false">
+                    Posts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('posts.create') }}">New Post</a>
+                    <a class="dropdown-item" href="{{ route('posts.index') }}">List Posts</a>
                 </div>
             </li>
         </ul>
