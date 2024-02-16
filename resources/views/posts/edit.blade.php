@@ -31,11 +31,11 @@
                             <div>
                                 <input type="datetime-local" name="published_at" placeholder="Published At">
                             </div>
-                            <select name="user_id">
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}" {{ $user->id == $post->user_id ? 'selected' : '' }}>{{ $user->name }}</option>
-                                @endforeach
-                            </select>
+{{--                            <select name="user_id">--}}
+{{--                                @foreach ($users as $user)--}}
+{{--                                    <option value="{{ $user->id }}" {{ $user->id == $post->user_id ? 'selected' : '' }}>{{ $user->name }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>

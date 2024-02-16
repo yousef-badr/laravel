@@ -15,9 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::view('/', 'welcome')->name('welcome');
 
-Route::resource('users',UserController::class);
-Route::resource('posts',PostController::class);
+Route::view('dashboard', 'dashboard')
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
+
+Route::middleware('auth')->group(function (){
+    Route::resource('users',UserController::class);
+//    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+//    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+    Route::resource('posts',PostController::class);
+});
+
+
+
+require __DIR__.'/auth.php';

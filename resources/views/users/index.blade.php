@@ -7,6 +7,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Posts Count</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -16,6 +17,7 @@
                 <td>{{ $user->id }}</td>
                 <td><a href="{{ route('users.show', $user->id) }}">{{ $user->name }}</a></td>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->posts_count }}</td>
                 <td>
                     <a href="{{ route('users.edit', $user->id) }}">Edit</a>
                     <form action="{{ route('users.destroy', $user->id) }}" method="post">

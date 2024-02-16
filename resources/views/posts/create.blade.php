@@ -30,11 +30,11 @@
                             <div>
                             <input type="datetime-local" name="published_at" placeholder="Published At">
                             </div>
-                            <select name="user_id">
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                @endforeach
-                            </select>
+{{--                            <select name="user_id">--}}
+{{--                                @foreach ($users as $user)--}}
+{{--                                    <option value="{{ $user->id }}">{{ $user->name }}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
 {{--                            <select class="form-select" aria-label="Default select example">--}}
 {{--                                <option selected>Select one of this users</option>--}}
 {{--                                @foreach($posts as $post)--}}
