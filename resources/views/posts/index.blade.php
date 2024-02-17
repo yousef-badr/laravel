@@ -9,6 +9,8 @@
             <th>Slug</th>
             <th>Post</th>
             <th>Writer</th>
+            <th>Image</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -19,6 +21,7 @@
                 <td>{{ $post->slug }}</td>
                 <td>{{ $post->body }}</td>
                 <td>{{ $post->user->name }}</td>
+                <td><img src="{{asset('storage/'.$post->image)}}" height="100px" width="100px" ></td>
                 <td>
                     <a href="{{ route('posts.edit', $post->id) }}">Edit</a>
                     <form action="{{ route('posts.destroy', $post->id) }}" method="post">
@@ -30,3 +33,4 @@
             </tr>
     @endforeach
 @endsection
+{{ $posts->links() }}

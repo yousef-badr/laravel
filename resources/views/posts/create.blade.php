@@ -9,7 +9,7 @@
                         Enter Post Your Information
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('posts.store') }}" method="POST">
+                        <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="title">Title</label>
@@ -29,6 +29,10 @@
                             </div>
                             <div>
                             <input type="datetime-local" name="published_at" placeholder="Published At">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">Image</label>
+                                <input type="file" class="form-control" id="image" name="photo">
                             </div>
 {{--                            <select name="user_id">--}}
 {{--                                @foreach ($users as $user)--}}

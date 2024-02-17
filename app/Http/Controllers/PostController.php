@@ -39,8 +39,13 @@ class PostController extends Controller
             'body' => $request->body,
             'enabled' => $request->enabled,
             'published_at' => $request->published_at,
-            'user_id' => $userId
+            'user_id' => $userId,
+//            'image' => $request->image
         ]);
+        $path = $request->file('photo')->getClientOriginalName();
+        $image = $request->file('photo')->storeAs('posts',$path,'public');
+        $post->image=$image;
+        $post->save();
         event(new UpdateUserPostsCount($post));
         return redirect()->route('posts.index');
     }
@@ -78,6 +83,10 @@ class PostController extends Controller
             'published_at' => $request->published_at,
             'user_id' => $post->user_id,
         ]);
+        $path = $request->file('photo')->getClientOriginalName();
+        $image = $request->file('photo')->storeAs('posts',$path,'public');
+        $post->image=$image;
+        $post->update();
         return redirect()->route('posts.index');
     }
 

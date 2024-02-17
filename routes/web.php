@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\FacebookAuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +29,15 @@ Route::view('profile', 'profile')
 
 Route::middleware('auth')->group(function (){
     Route::resource('users',UserController::class);
-//    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
-//    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     Route::resource('posts',PostController::class);
+    storage::disk('public');
 });
+
+Route::get('/login/facebook', [FacebookAuthController::class, 'redirectToFacebook']);
+Route::get('/facebook/callback', [FacebookAuthController::class, 'handleFacebookCallback']);
+Route::view('/facebook','facebook');
+
+
 
 
 
