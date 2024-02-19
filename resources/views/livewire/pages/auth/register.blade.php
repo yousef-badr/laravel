@@ -84,6 +84,9 @@ new #[Layout('layouts.guest')] class extends Component
             <x-primary-button class="ms-4">
                 {{ __('Register') }}
             </x-primary-button>
+            <x-primary-button class="ms-4">
+                <a href="{{url('redirect/facebook')}}">Login with facebook</a>
+            </x-primary-button>
         </div>
     </form>
 </div>

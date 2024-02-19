@@ -33,9 +33,11 @@ Route::middleware('auth')->group(function (){
     storage::disk('public');
 });
 
-Route::get('/login/facebook', [FacebookAuthController::class, 'redirectToFacebook']);
-Route::get('/facebook/callback', [FacebookAuthController::class, 'handleFacebookCallback']);
-Route::view('/facebook','facebook');
+Route::get('/redirect/{service}', [FacebookAuthController::class, 'redirectToFacebook']);
+Route::get('/callback/{service}', [FacebookAuthController::class, 'handleFacebookCallback']);
+//Route::view('/facebook','facebook');
+
+//Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('auth');
 
 
 

@@ -3,34 +3,34 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\SocialUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class FacebookAuthController extends Controller
 {
-    public function redirectToFacebook()
+    public function redirectToFacebook($service)
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver($service)->redirect();
     }
 
-    public function handleFacebookCallback()
+    public function handleFacebookCallback($service)
     {
-        $user = Socialite::driver('facebook')->user();
-//        $name = $user->name;
-//        $email = $user->email;
-//        $avatar = $user->avatar;
-//        $existingUser = User::where('email', $email)->first();
-//         if ($existingUser) {
-//             Auth::login($existingUser);
-//         } else {
-//             $newUser = new User();
-//             $newUser->name = $name;
-//             $newUser->email = $email;
-//             $newUser->avatar = $avatar;
-//             $newUser->save();
-//             Auth::login($newUser);
-//         }
+        $socialiteUser = Socialite::driver($service)->user();
+        $name = $socialiteUser->getName();
+        $email = $socialiteUser->getEmail();
+        $user = User::where('email', $email)->first();
+        if (!$user) {
+            $user = User::create([
+                'name' => $name,
+                'email' => $email,
+                'password' => '123456789'
+            ]);
+        }
+        Auth::login($user);
+        return redirect()->route('users.index');
     }
 }

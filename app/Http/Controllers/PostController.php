@@ -40,7 +40,6 @@ class PostController extends Controller
             'enabled' => $request->enabled,
             'published_at' => $request->published_at,
             'user_id' => $userId,
-//            'image' => $request->image
         ]);
         $path = $request->file('photo')->getClientOriginalName();
         $image = $request->file('photo')->storeAs('posts',$path,'public');
